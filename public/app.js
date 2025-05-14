@@ -53,8 +53,6 @@
   }
 })();
 
-console.log("-------------- Passed here 1 --------------");
-
 function triggerToast(id) {
   var element = document.getElementById(id);
   element.classList.add("show");

@@ -5,6 +5,7 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
 import Link from "next/link"
+import Script from "next/script"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -117,94 +118,12 @@ export default function PaymentPage() {
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
             {/* Left column - Payment form */}
             <div className="md:col-span-3">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Payment details</CardTitle>
-                  <CardDescription>Enter your card information to complete your subscription</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleSubmit}>
-                    <div className="space-y-6">
-                      <div className="space-y-2">
-                        <Label htmlFor="email">Email</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="your.email@example.com"
-                          required
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                        />
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="card-number">Card number</Label>
-                        <div className="relative">
-                          <Input
-                            id="card-number"
-                            placeholder="1234 5678 9012 3456"
-                            required
-                            value={cardNumber}
-                            onChange={(e) => setCardNumber(formatCardNumber(e.target.value))}
-                            maxLength={19}
-                          />
-                          <CreditCard
-                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-                            size={20}
-                          />
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="expiry">Expiry date</Label>
-                          <Input
-                            id="expiry"
-                            placeholder="MM/YY"
-                            required
-                            value={cardExpiry}
-                            onChange={(e) => setCardExpiry(formatCardExpiry(e.target.value))}
-                            maxLength={5}
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="cvc">CVC</Label>
-                          <Input
-                            id="cvc"
-                            placeholder="123"
-                            required
-                            value={cardCvc}
-                            onChange={(e) => setCardCvc(e.target.value.replace(/\D/g, ""))}
-                            maxLength={3}
-                          />
-                        </div>
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="name">Name on card</Label>
-                        <Input
-                          id="name"
-                          placeholder="J. Smith"
-                          required
-                          value={nameOnCard}
-                          onChange={(e) => setNameOnCard(e.target.value)}
-                        />
-                      </div>
-
-                      <div className="pt-4">
-                        <Button type="submit" className="w-full" disabled={isProcessing}>
-                          {isProcessing ? "Processing..." : `Pay $${calculatePrice().toFixed(2)}`}
-                        </Button>
-                      </div>
-
-                      <div className="flex items-center justify-center text-sm text-gray-500 dark:text-gray-400">
-                        <Lock size={14} className="mr-1" />
-                        <span>Payments are secure and encrypted</span>
-                      </div>
-                    </div>
-                  </form>
-                </CardContent>
-              </Card>
+              <Script src="https://checkout-web-components.checkout.com/index.js" strategy="beforeInteractive" />
+              <Script src="/app.js" strategy="lazyOnload" />
+              {/* Container for Checkout Web Components to mount the payment flow */}
+              <div id="flow-container"></div>
+              {/* Container for displaying error messages from app.js */}
+              <div id="error-message" className="text-red-500 mt-4"></div>
             </div>
 
             {/* Right column - Order summary */}
