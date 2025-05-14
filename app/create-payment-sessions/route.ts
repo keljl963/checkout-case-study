@@ -108,8 +108,3 @@ export async function POST(request: Request) {
     );
   }
 }
-
-// Optional: You can also define a GET handler or other HTTP methods if needed.
-// export async function GET(request: Request) {
-//   return NextResponse.json({ message: "Hello from create-payment-sessions GET endpoint!" }, { status: 200 });
-// } 
