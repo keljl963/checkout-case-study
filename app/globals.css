@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 0 0% 92%;
+    --accent-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --primary: 0 0% 10%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --ring: 0 0% 80%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 7%;
+    --foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 0 0% 20%;
+    --accent-foreground: 0 0% 98%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 10%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --ring: 0 0% 30%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Add this to debug dark mode */
+  .dark-mode-test {
+    @apply dark:bg-red-500 bg-blue-500;
+  }
+}
+
+/* Minimalist styles */
+.step-indicator {
+  @apply relative z-10 transition-all duration-300;
+}
+
+.step-indicator-active {
+  @apply bg-primary text-primary-foreground;
+}
+
+.step-indicator-completed {
+  @apply bg-primary text-primary-foreground;
+}
+
+.step-indicator-inactive {
+  @apply bg-secondary text-secondary-foreground;
+}
+
+.step-line {
+  @apply h-0.5 bg-border absolute top-5 left-0 right-0 -z-0;
+}
+
+.step-line-progress {
+  @apply h-full bg-primary transition-all duration-500;
+}
+
+.minimalist-input {
+  @apply bg-background border-input focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-300;
+}
+
+.minimalist-button {
+  @apply transition-all duration-300;
+}
+
+.minimalist-card {
+  @apply bg-card border border-border shadow-sm;
+}
+
+.platform-button {
+  @apply transition-all duration-300 hover:bg-accent;
+}
+
+.connection-indicator {
+  @apply fixed bottom-4 left-4 z-50 flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300 cursor-pointer shadow-sm;
+}
+
+.connection-indicator.success {
+  @apply bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400;
+}
+
+.connection-indicator.error {
+  @apply bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400;
+}
+
+.connection-indicator.loading {
+  @apply bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400;
+}
+
+/* Add these styles for the multiple choice options */
+.choice-container {
+  @apply flex items-start gap-2 p-2 rounded-md transition-colors hover:bg-accent;
+}
+
+.choice-container input[type="radio"] {
+  @apply mt-1;
+}
+
+.choice-container label {
+  @apply text-sm cursor-pointer flex-1;
+}
+
+.choice-container:has(input:checked) {
+  @apply bg-accent;
+}
