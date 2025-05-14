@@ -1,8 +1,19 @@
 import { NextResponse } from 'next/server';
 
-const SECRET_KEY = process.env.CHECKOUT_SECRET_KEY;// Replace with your actual secret key or use environment variables
+const SECRET_KEY = process.env.CHECKOUT_SECRET_KEY;
 
 export async function POST(request: Request) {
+  if (!SECRET_KEY) {
+    console.error("Checkout.com secret key is not configured.");
+    return NextResponse.json(
+      {
+        error: "Server configuration error: Missing secret key.",
+        details: "The Checkout.com secret key is not set in the environment variables."
+      },
+      { status: 500 }
+    );
+  }
+
   try {
     const paymentSessionPayload = {
       amount: 10,
