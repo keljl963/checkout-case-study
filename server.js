@@ -5,7 +5,6 @@ const app = express();
 app.use(express.static("public"));
 app.use(express.json());
 
-// Insert your secret key here
 const SECRET_KEY = process.env.CHECKOUT_SECRET_KEY;
 
 app.post("/create-payment-sessions", async (_req, res) => {
