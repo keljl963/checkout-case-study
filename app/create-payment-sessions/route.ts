@@ -16,7 +16,7 @@ export async function POST(request: Request) {
 
   try {
     const paymentSessionPayload = {
-      amount: 10,
+      amount: 999,
       currency: "USD",
       reference: "ORD-123A",
       description: "Payment for Guitars and Amps",
@@ -63,14 +63,9 @@ export async function POST(request: Request) {
       metadata: {},
       items: [
         {
-          name: "Guitar",
+          name: "Pro Plan",
           quantity: 1,
-          unit_price: 1635,
-        },
-        {
-          name: "Amp",
-          quantity: 3,
-          unit_price: 1635,
+          unit_price: 999,
         },
       ],
     };
