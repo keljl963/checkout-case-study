@@ -60,7 +60,10 @@
     "zod": "^3.24.1",
     "ai": "latest",
     "@ai-sdk/deepseek": "latest",
-    "uuid": "latest"
+    "uuid": "latest",
+    "@checkout.com/checkout-web-components": "^0.7.0-beta",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.12"
   },
   "devDependencies": {
     "@types/node": "^22",
