@@ -2,7 +2,7 @@
 (async () => {
   try {
     // Insert your public key here
-    const PUBLIC_KEY = "068FEEE394DCF942A3AD5A52876C62DD";
+    const PUBLIC_KEY = process.env.PUBLIC_KEY;
 
     const response = await fetch("/create-payment-sessions", { 
       method: "POST",
