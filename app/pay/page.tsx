@@ -119,7 +119,7 @@ export default function PaymentPage() {
             {/* Left column - Payment form */}
             <div className="md:col-span-3">
               <Script src="https://checkout-web-components.checkout.com/index.js" strategy="beforeInteractive" />
-              <Script src="/app.js" strategy="lazyOnload" />
+              <Script src="/app.js" strategy="afterInteractive" />
               {/* Container for Checkout Web Components to mount the payment flow */}
               <div id="flow-container"></div>
               {/* Container for displaying error messages from app.js */}
